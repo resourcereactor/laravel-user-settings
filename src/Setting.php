@@ -219,6 +219,7 @@ class Setting {
     public function load($constraint_value = null)
     {
         $constraint_value = $this->getConstraintValue($constraint_value);
+        $loggedInCompany = App\Models\Universal\Company::loggedInCompany();
         $constraint_query = $this->getConstraintQuery($constraint_value);
         $json = \DB::table($this->table)
             ->whereRaw($constraint_query)
