@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.2.1] - 2017-07-30 15:00 GMT
+##### Changed
+- Ability to use pivot table of companies and users to store user settings
+
 
 ## [2.1.2] - 2016-11-08 14:31 GMT
 ##### Changed
