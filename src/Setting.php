@@ -199,9 +199,11 @@ class Setting {
             $update[$this->column] = $json;
 
             $constraint_query = $this->getConstraintQuery($constraint_value);
-
+            $loggedInCompany = \App\Models\Universal\Company::loggedInCompany();
             $res = \DB::table($this->table)
-                ->whereRaw($constraint_query)
+//                 ->whereRaw($constraint_query)
+                ->where('company_id', $loggedInCompany->id)
+                ->where('user_id', $constraint_value)
                 ->update($update);
 
             $this->dirty[$constraint_value] = false;
@@ -222,7 +224,9 @@ class Setting {
         $loggedInCompany = \App\Models\Universal\Company::loggedInCompany();
         $constraint_query = $this->getConstraintQuery($constraint_value);
         $json = \DB::table($this->table)
-            ->whereRaw($constraint_query)
+//             ->whereRaw($constraint_query)
+            ->where('company_id', $loggedInCompany->id)
+            ->where('user_id', $constraint_value)
             ->value($this->column);
 
         $this->settings[$constraint_value] = json_decode($json, true);
